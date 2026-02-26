@@ -27,19 +27,19 @@
     "contributes": {
       "configuration": {
         "type": "object",
-        "title": "Bug Horn Error",
+        "title": "Bug Horn",
         "properties": {
           "bugHorn.enabled": {
             "type": "boolean",
             "default": true,
-            "description": "Enable/disable the terminal sound on terminal errors"
+            "description": "Enable/disable the bug horn on terminal errors"
           },
           "bugHorn.volume": {
             "type": "number",
             "default": 0.5,
             "minimum": 0,
             "maximum": 1,
-            "description": "Volume level for the terminal sound (0.0 to 1.0)"
+            "description": "Volume level for the bug horn (0.0 to 1.0)"
           },
           "bugHorn.errorPatterns": {
             "type": "array",

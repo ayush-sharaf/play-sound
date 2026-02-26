@@ -50,7 +50,7 @@ function activate(context) {
         context.subscriptions.push(
             vscode.commands.registerCommand('bugHorn.testSound', () => {
                 playSound();
-                vscode.window.showInformationMessage('Playing terminal sound...');
+                vscode.window.showInformationMessage('Playing bug horn sound...');
             })
         );
 
@@ -103,19 +103,10 @@ function playSound() {
         const config = vscode.workspace.getConfiguration('bugHorn');
         const volume = config.get('volume', 0.5);
         
-        const bundledSoundsDir = path.join(extensionContext.extensionPath, 'sounds');
         const userSoundsDir = extensionContext.globalStorageUri.fsPath;
         
         let audioFiles = [];
         const audioExtensions = ['.mp3', '.wav', '.ogg', '.m4a', '.flac'];
-
-        // Get bundled sounds
-        if (fs.existsSync(bundledSoundsDir)) {
-            const bundledFiles = fs.readdirSync(bundledSoundsDir)
-                .filter(file => audioExtensions.includes(path.extname(file).toLowerCase()))
-                .map(file => path.join(bundledSoundsDir, file));
-            audioFiles = audioFiles.concat(bundledFiles);
-        }
 
         // Get user sounds
         if (fs.existsSync(userSoundsDir)) {
@@ -126,7 +117,7 @@ function playSound() {
         }
 
         if (audioFiles.length === 0) {
-            vscode.window.showWarningMessage('No audio files found.');
+            vscode.window.showWarningMessage('No custom audio files found. Please add sounds using the "Bug Horn: Add Custom Sound" command.');
             return;
         }
 

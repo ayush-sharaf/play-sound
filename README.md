@@ -36,7 +36,7 @@ Open VS Code settings and search for "Bug Horn" to configure:
 ### `bugHorn.enabled`
 - **Type:** `boolean`
 - **Default:** `true`
-- **Description:** Enable/disable the bug horn on bug horns
+- **Description:** Enable/disable the bug horn on bug horn errors
 
 ### `bugHorn.volume`
 - **Type:** `number`
@@ -128,8 +128,8 @@ To publish to the VS Code Marketplace:
 
 ### Sound not playing?
 
-1. **Check sound files exist:** Make sure there are audio files (.mp3, .wav, etc.) in the `sounds/` directory.
-2. **Test the sound:** Use the "Bug Horn: Test Sound" command (it will pick one at random)
+1. **Check sound files exist:** Make sure you have added custom audio files via the "Bug Horn: Add Custom Sound" command.
+2. **Test the sound:** Use the "Bug Horn: Test Sound" command (it will pick one at random from your custom sounds)
 3. **Check audio player:** Ensure you have a compatible audio player installed (see requirements)
 4. **Check system volume:** Make sure your system volume is not muted
 5. **Check extension logs:** Open Output panel → select "Bug Horn Error"
@@ -150,9 +150,6 @@ Adjust the `bugHorn.volume` setting (0.0 to 1.0).
 Bug Horn/
 ├── extension.js          # Main extension code
 ├── package.json          # Extension manifest
-├── sounds/
-│   ├── example.mp3      # Example sound file
-│   └── README.txt       # Instructions
 └── README.md            # This file
 ```
 
