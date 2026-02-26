@@ -1,0 +1,87 @@
+{
+  "name": "terminal-sound-error",
+  "displayName": "Terminal Sound on Terminal Error",
+  "description": "Plays a 'terminal' sound whenever there's an error in the terminal",
+  "version": "1.0.0",
+  "publisher": "Zubair",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "Other"
+  ],
+      "activationEvents": [
+      "onStartupFinished",
+      "onCommand:terminalSoundError.toggle",
+      "onCommand:terminalSoundError.testSound",
+      "onCommand:terminalSoundError.addSound",
+      "onCommand:terminalSoundError.openSoundsFolder"
+    ],
+    "main": "./extension.js",
+  
+    "contributes": {
+      "configuration": {
+        "type": "object",
+        "title": "Terminal Sound Error",
+        "properties": {
+          "terminalSoundError.enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable/disable the terminal sound on terminal errors"
+          },
+          "terminalSoundError.volume": {
+            "type": "number",
+            "default": 0.5,
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Volume level for the terminal sound (0.0 to 1.0)"
+          },
+          "terminalSoundError.errorPatterns": {
+            "type": "array",
+            "default": [
+              "error:",
+              "Error:",
+              "ERROR:",
+              "fail:",
+              "FAIL:",
+              "Failed",
+              "fatal:",
+              "FATAL:",
+              "Exception",
+              "Traceback",
+              "command not found",
+              "No such file"
+            ],
+            "description": "Patterns to detect errors in terminal output"
+          }
+        }
+      },
+      "commands": [
+        {
+          "command": "terminalSoundError.toggle",
+          "title": "Terminal Sound: Toggle Error Sound"
+        },
+        {
+          "command": "terminalSoundError.testSound",
+          "title": "Terminal Sound: Test Sound"
+        },
+        {
+          "command": "terminalSoundError.addSound",
+          "title": "Terminal Sound: Add Custom Sound"
+        },
+        {
+          "command": "terminalSoundError.openSoundsFolder",
+          "title": "Terminal Sound: Open Custom Sounds Folder"
+        }
+      ]
+    },  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.93.0",
+    "@types/node": "16.x",
+    "eslint": "^8.41.0"
+  }
+}
