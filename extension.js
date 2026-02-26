@@ -11,7 +11,7 @@ let extensionContext;
  */
 function activate(context) {
     try {
-        console.log('Terminal Sound Error extension is now active!');
+        console.log('Bug Horn extension is now active!');
         extensionContext = context;
 
         // Ensure global storage directory exists
@@ -20,7 +20,7 @@ function activate(context) {
             fs.mkdirSync(storagePath, { recursive: true });
         }
 
-        const config = vscode.workspace.getConfiguration('terminalSoundError');
+        const config = vscode.workspace.getConfiguration('bugHorn');
         isEnabled = config.get('enabled', true);
 
         // Method 1: Stable API - detect when a command finishes with non-zero exit code (VS Code 1.93+)
@@ -37,25 +37,25 @@ function activate(context) {
 
         // Register commands
         context.subscriptions.push(
-            vscode.commands.registerCommand('terminalSoundError.toggle', () => {
+            vscode.commands.registerCommand('bugHorn.toggle', () => {
                 isEnabled = !isEnabled;
-                vscode.workspace.getConfiguration('terminalSoundError')
+                vscode.workspace.getConfiguration('bugHorn')
                     .update('enabled', isEnabled, vscode.ConfigurationTarget.Global);
                 vscode.window.showInformationMessage(
-                    `Terminal sound ${isEnabled ? 'enabled' : 'disabled'}`
+                    `Bug Horn ${isEnabled ? 'enabled' : 'disabled'}`
                 );
             })
         );
 
         context.subscriptions.push(
-            vscode.commands.registerCommand('terminalSoundError.testSound', () => {
+            vscode.commands.registerCommand('bugHorn.testSound', () => {
                 playSound();
                 vscode.window.showInformationMessage('Playing terminal sound...');
             })
         );
 
         context.subscriptions.push(
-            vscode.commands.registerCommand('terminalSoundError.addSound', async () => {
+            vscode.commands.registerCommand('bugHorn.addSound', async () => {
                 const options = {
                     canSelectMany: true,
                     openLabel: 'Add Sound',
@@ -77,7 +77,7 @@ function activate(context) {
         );
 
         context.subscriptions.push(
-            vscode.commands.registerCommand('terminalSoundError.openSoundsFolder', () => {
+            vscode.commands.registerCommand('bugHorn.openSoundsFolder', () => {
                 vscode.env.openExternal(vscode.Uri.file(storagePath));
             })
         );
@@ -85,22 +85,22 @@ function activate(context) {
         // Listen for configuration changes
         context.subscriptions.push(
             vscode.workspace.onDidChangeConfiguration(e => {
-                if (e.affectsConfiguration('terminalSoundError.enabled')) {
-                    isEnabled = vscode.workspace.getConfiguration('terminalSoundError').get('enabled', true);
+                if (e.affectsConfiguration('bugHorn.enabled')) {
+                    isEnabled = vscode.workspace.getConfiguration('bugHorn').get('enabled', true);
                 }
             })
         );
 
-        vscode.window.showInformationMessage('Terminal Sound Error extension activated!');
+        vscode.window.showInformationMessage('Bug Horn extension activated!');
     } catch (error) {
         console.error('Error activating extension:', error);
-        vscode.window.showErrorMessage('Terminal Sound Error failed to activate: ' + error.message);
+        vscode.window.showErrorMessage('Bug Horn failed to activate: ' + error.message);
     }
 }
 
 function playSound() {
     try {
-        const config = vscode.workspace.getConfiguration('terminalSoundError');
+        const config = vscode.workspace.getConfiguration('bugHorn');
         const volume = config.get('volume', 0.5);
         
         const bundledSoundsDir = path.join(extensionContext.extensionPath, 'sounds');
@@ -145,7 +145,7 @@ function playSound() {
 }
 
 function deactivate() {
-    console.log('Terminal Sound Error extension deactivated');
+    console.log('Bug Horn extension deactivated');
 }
 
 module.exports = { activate, deactivate };

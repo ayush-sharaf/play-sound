@@ -1,9 +1,14 @@
 {
-  "name": "terminal-sound-error",
-  "displayName": "Terminal Sound on Terminal Error",
-  "description": "Plays a 'terminal' sound whenever there's an error in the terminal",
+  "name": "bug-horn",
+  "displayName": "Bug Horn",
+  "description": "Plays a 'bug horn' sound whenever there's an error in the terminal",
   "version": "1.0.0",
-  "publisher": "Zubair",
+  "publisher": "ayushsharaf",
+  "icon": "logo.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ayush-sharaf/play-sound.git"
+  },
   "engines": {
     "vscode": "^1.93.0"
   },
@@ -12,31 +17,31 @@
   ],
       "activationEvents": [
       "onStartupFinished",
-      "onCommand:terminalSoundError.toggle",
-      "onCommand:terminalSoundError.testSound",
-      "onCommand:terminalSoundError.addSound",
-      "onCommand:terminalSoundError.openSoundsFolder"
+      "onCommand:bugHorn.toggle",
+      "onCommand:bugHorn.testSound",
+      "onCommand:bugHorn.addSound",
+      "onCommand:bugHorn.openSoundsFolder"
     ],
     "main": "./extension.js",
   
     "contributes": {
       "configuration": {
         "type": "object",
-        "title": "Terminal Sound Error",
+        "title": "Bug Horn Error",
         "properties": {
-          "terminalSoundError.enabled": {
+          "bugHorn.enabled": {
             "type": "boolean",
             "default": true,
             "description": "Enable/disable the terminal sound on terminal errors"
           },
-          "terminalSoundError.volume": {
+          "bugHorn.volume": {
             "type": "number",
             "default": 0.5,
             "minimum": 0,
             "maximum": 1,
             "description": "Volume level for the terminal sound (0.0 to 1.0)"
           },
-          "terminalSoundError.errorPatterns": {
+          "bugHorn.errorPatterns": {
             "type": "array",
             "default": [
               "error:",
@@ -58,20 +63,20 @@
       },
       "commands": [
         {
-          "command": "terminalSoundError.toggle",
-          "title": "Terminal Sound: Toggle Error Sound"
+          "command": "bugHorn.toggle",
+          "title": "Bug Horn: Toggle Error Sound"
         },
         {
-          "command": "terminalSoundError.testSound",
-          "title": "Terminal Sound: Test Sound"
+          "command": "bugHorn.testSound",
+          "title": "Bug Horn: Test Sound"
         },
         {
-          "command": "terminalSoundError.addSound",
-          "title": "Terminal Sound: Add Custom Sound"
+          "command": "bugHorn.addSound",
+          "title": "Bug Horn: Add Custom Sound"
         },
         {
-          "command": "terminalSoundError.openSoundsFolder",
-          "title": "Terminal Sound: Open Custom Sounds Folder"
+          "command": "bugHorn.openSoundsFolder",
+          "title": "Bug Horn: Open Custom Sounds Folder"
         }
       ]
     },  "scripts": {

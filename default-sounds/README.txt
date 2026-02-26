@@ -2,8 +2,7 @@ PLACE YOUR SOUND FILE HERE
 ===========================
 
 Place your sound files (.mp3, .wav, .ogg, etc.) in this directory. 
-The extension will randomly select and play one of these files whenever a terminal error occurs.
-
+The extension will randomly select and play one of these files whenever a bug horn is triggered.
 The extension will play this sound whenever an error is detected in the terminal.
 
 Supported formats:
